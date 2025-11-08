@@ -1,16 +1,28 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: mysql
+  # mysql:
+  #   image: mysql:8.0
+  #   container_name: mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: admin
+  #     MYSQL_DATABASE: prestashop
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+  #   ports:
+  #     - "3306:3306"
+  #   networks:
+  #     - dokploy-network
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: prestashop
     volumes:
-      - mysql-data:/var/lib/mysql
-    ports:
-      - "3306:3306"
+      - /srv/Databases/PrestaShop:/var/lib/mysql
     networks:
       - dokploy-network
 
@@ -18,9 +30,9 @@ services:
     image: prestashop/prestashop:latest
     container_name: prestashop-latest
     depends_on:
-      - mysql
+      - mariadb
     environment:
-      DB_SERVER: mysql
+      DB_SERVER: mariadb
       DB_NAME: prestashop
       DB_USER: root
       DB_PASSWORD: admin
@@ -46,9 +58,9 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: pma-ps
     depends_on:
-      - mysql
+      - mariadb
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: mariadb
       MYSQL_ROOT_PASSWORD: admin
     ports:
       - "9090:80"
