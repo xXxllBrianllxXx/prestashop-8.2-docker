@@ -5,7 +5,7 @@ services:
     image: mysql:8.0
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: prestashop
+      MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: prestashop
     volumes:
       - mysql-data:/var/lib/mysql
@@ -35,7 +35,7 @@ services:
       DB_SERVER: mysql-ps
       DB_NAME: prestashop
       DB_USER: root
-      DB_PASSWORD: prestashop
+      DB_PASSWORD: admin
       PS_DEV_MODE: 1
       PS_INSTALL_AUTO: 0
       PS_DOMAIN: localhost:8181
