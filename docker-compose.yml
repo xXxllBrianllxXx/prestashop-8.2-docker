@@ -15,8 +15,8 @@ services:
       - ps-net
 
   prestashop:
-    image: prestashop/prestashop:8.2
-    container_name: prestashop-8.2
+    image: prestashop/prestashop:latest
+    container_name: prestashop-latest
     depends_on:
       - mysql
     environment:
