@@ -12,7 +12,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - dokploy-network
+      - ps-net
 
   prestashop:
     image: prestashop/prestashop:latest
@@ -40,7 +40,7 @@ services:
     ports:
       - "8181:80"
     networks:
-      - dokploy-network
+      - ps-net
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -53,16 +53,16 @@ services:
     ports:
       - "9090:80"
     networks:
-      - dokploy-network
+      - ps-net
 
 volumes:
   mysql-data:
   prestashop-data:
 
-# networks:
-#   ps-net:
-#     driver: bridge
-
 networks:
-  dokploy-network:
-    external: true
+  ps-net:
+    driver: bridge
+
+# networks:
+#   dokploy-network:
+#     external: true
