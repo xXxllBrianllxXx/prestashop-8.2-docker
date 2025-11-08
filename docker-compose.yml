@@ -12,7 +12,7 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - ps-net
+      - dokploy-network
 
   prestashop:
     image: prestashop/prestashop:latest
@@ -20,7 +20,7 @@ services:
     depends_on:
       - mysql
     environment:
-      DB_SERVER: mysql
+      DB_SERVER: mysql-ps
       DB_NAME: prestashop
       DB_USER: root
       DB_PASSWORD: admin
@@ -40,7 +40,7 @@ services:
     ports:
       - "8181:80"
     networks:
-      - ps-net
+      - dokploy-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -48,17 +48,21 @@ services:
     depends_on:
       - mysql
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: mysql-ps
       MYSQL_ROOT_PASSWORD: admin
     ports:
       - "9090:80"
     networks:
-      - ps-net
+      - dokploy-network
 
 volumes:
   mysql-data:
   prestashop-data:
 
+# networks:
+#   ps-net:
+#     driver: bridge
+
 networks:
-  ps-net:
-    driver: bridge
+  dokploy-network:
+    external: true
