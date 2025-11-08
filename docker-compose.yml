@@ -32,7 +32,7 @@ services:
     depends_on:
       - mysql
     environment:
-      DB_SERVER: mysql
+      DB_SERVER: 148.230.91.30:9090 # mysql
       DB_NAME: prestashop
       DB_USER: root
       DB_PASSWORD: admin
