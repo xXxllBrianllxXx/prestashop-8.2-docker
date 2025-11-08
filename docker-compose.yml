@@ -32,7 +32,7 @@ services:
     depends_on:
       - mysql
     environment:
-      DB_SERVER: mysql-ps
+      DB_SERVER: mysql
       DB_NAME: prestashop
       DB_USER: root
       DB_PASSWORD: admin
