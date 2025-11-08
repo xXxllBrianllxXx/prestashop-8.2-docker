@@ -26,7 +26,7 @@ services:
       DB_PASSWORD: admin
       PS_DEV_MODE: 1
       PS_INSTALL_AUTO: 1
-      PS_DOMAIN: localhost:8080
+      PS_DOMAIN: localhost:8181
     volumes:
       - ./modules:/var/www/html/modules
       - ./themes:/var/www/html/themes
@@ -34,7 +34,7 @@ services:
       - prestashop-data:/var/www/html
       - ./.docker/apache/server-name.conf:/etc/apache2/conf-enabled/server-name.conf
     ports:
-      - "8080:80"
+      - "8181:80"
     networks:
       - ps-net
 
