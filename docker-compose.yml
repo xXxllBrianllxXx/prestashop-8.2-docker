@@ -28,10 +28,14 @@ services:
       PS_INSTALL_AUTO: 1
       PS_DOMAIN: localhost:8181
     volumes:
-      - ./modules:/var/www/html/modules
-      - ./themes:/var/www/html/themes
-      - ./override:/var/www/html/override
-      - prestashop-data:/var/www/html
+      # - ./modules:/var/www/html/modules
+      # - ./themes:/var/www/html/themes
+      # - ./override:/var/www/html/override
+      # - prestashop-data:/var/www/html
+      - /srv/Configs/PrestaShop/src:/var/www/html
+      - /srv/Configs/PrestaShop/src/modules:/var/www/html/modules
+      - /srv/Configs/PrestaShop/src/themes:/var/www/html/themes
+      - /srv/Configs/PrestaShop/src/override:/var/www/html/override
       - ./.docker/apache/server-name.conf:/etc/apache2/conf-enabled/server-name.conf
     ports:
       - "8181:80"
