@@ -16,7 +16,7 @@ services:
 
   mariadb:
     image: mariadb
-    container_name: mariadb
+    container_name: mariadb-ps
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
@@ -32,7 +32,7 @@ services:
     depends_on:
       - mariadb
     environment:
-      DB_SERVER: mariadb
+      DB_SERVER: mariadb-ps
       DB_NAME: prestashop
       DB_USER: root
       DB_PASSWORD: admin
@@ -60,7 +60,7 @@ services:
     depends_on:
       - mariadb
     environment:
-      PMA_HOST: mariadb
+      PMA_HOST: mariadb-ps
       MYSQL_ROOT_PASSWORD: admin
     ports:
       - "9090:80"
