@@ -25,7 +25,7 @@ services:
       DB_USER: root
       DB_PASSWORD: admin
       PS_DEV_MODE: 1
-      PS_INSTALL_AUTO: 1
+      PS_INSTALL_AUTO: 0
       PS_DOMAIN: localhost:8181
     volumes:
       # - ./modules:/var/www/html/modules
