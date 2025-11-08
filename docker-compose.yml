@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8.0
-    container_name: mysql-ps
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: prestashop
@@ -12,15 +12,15 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - ps-net
+      - dokploy-network
 
   prestashop:
-    image: prestashop/prestashop:8.2
-    container_name: prestashop-8.2
+    image: prestashop/prestashop:latest
+    container_name: prestashop-latest
     depends_on:
       - mysql
     environment:
-      DB_SERVER: mysql-ps
+      DB_SERVER: mysql
       DB_NAME: prestashop
       DB_USER: root
       DB_PASSWORD: admin
@@ -40,7 +40,7 @@ services:
     ports:
       - "8181:80"
     networks:
-      - ps-net
+      - dokploy-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -48,21 +48,21 @@ services:
     depends_on:
       - mysql
     environment:
-      PMA_HOST: mysql-ps
+      PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: admin
     ports:
       - "9090:80"
     networks:
-      - ps-net
+      - dokploy-network
 
 volumes:
   mysql-data:
   prestashop-data:
 
-networks:
-  ps-net:
-    driver: bridge
-
 # networks:
-#   dokploy-network:
-#     external: true
+#   ps-net:
+#     driver: bridge
+
+networks:
+  dokploy-network:
+    external: true
